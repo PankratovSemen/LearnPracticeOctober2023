@@ -1,0 +1,48 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+
+@model LearnPractice.Models.Database.Articles;
+
+
+<style>
+    h2{
+        font-family:"Bebas Neue";
+        font-size:30px;
+        font-weight: bold;
+        padding:10px;
+    }
+
+    #brd{
+        height:100%;
+    }
+
+    p{
+        font-family:"PT Sans"
+        font-size:18px;
+        font-weight:normal;
+        padding:10px;
+    }
+</style>
+
+
+
+
+<div class="container-fluid">
+    <div class="row">
+        
+        
+            <div class="col-12" id="brd">
+              
+
+            <b> <h2>@Html.Raw(Model.Title)</h2></b>
+            <p>@Html.Raw(Model.Content)</p>
+            <p>Автор:@Html.Raw(Model.Author)</p>
+            <p>Дата публикации:@Html.Raw(Model.Date)</p>
+            </div>
+            <div class="col-1" id="brds"></div>
+        
+    </div>
+</div>

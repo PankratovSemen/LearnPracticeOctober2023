@@ -1,0 +1,210 @@
+#heads {
+    background-color: #7c45d6;
+    height: 4rem;
+    font-size: 25px;
+    font-family: "SB Sans Text";
+    color: white;
+    padding: 2%;
+}
+
+    #heads a {
+        color: white;
+    }
+
+#s {
+    font-size: 1.4rem;
+    color: white;
+    font-family: "SB Sans Text";
+    margin-top: 1%;
+}
+
+    #s > a {
+        color: white;
+        padding: 5px;
+        font-family: "SB Sans Text";
+    }
+
+
+#newstitle {
+    background-color: #2e0571;
+    padding: 10px;
+    text-align: center;
+    font-size: 25px;
+    color: white;
+    font-family: "SB Sans Text";
+}
+
+#partt {
+    padding: 20px;
+}
+
+#news {
+    background-color: #2e0571;
+    margin-top: -24px;
+    padding: 10px;
+    height: 500px;
+    text-align: center;
+    position: relative;
+    display: inline-block;
+    align-items: end;
+    margin-left: 20px;
+}
+
+    #news img {
+        height: 100%;
+        width: 100%;
+        object-fit: cover;
+    }
+
+    #news h2 {
+        background: #2e0571;
+        color: #fff;
+        border-radius: 2px;
+        position: absolute;
+        width: 98%;
+        bottom: 10px;
+        font-size: 25px;
+        padding: 3px 5px;
+        text-align: center;
+        font-family: "SB Sans Text";
+    }
+
+    #news a {
+        color: white;
+    }
+
+h1 {
+    font-family: "SB Sans Text";
+    font-size: 20px;
+}
+
+
+h2 {
+    font-family: "SB Sans Text";
+    font-size: 25px;
+}
+
+
+#titlenews {
+    font-size: 20px;
+    text-align: center;
+    background-image:;
+}
+
+#news2 {
+    background-color: #2e0571;
+    height: 500px;
+    margin-top: -24px;
+}
+
+#news3 {
+    margin-top: 3%;
+    background-color: white;
+    width: 100%;
+    height: 440px;
+    font-family: "SB Sans Text";
+    color: black;
+}
+
+    #news3 a {
+        color: black;
+        font-size: 2rem;
+    }
+
+
+#allarticles {
+    text-align: center;
+    background-color: #7c45d6;
+    width: 100%;
+    color: white;
+    padding: 3px;
+}
+
+
+    #allarticles a {
+        font-size: 25px;
+        color: white;
+        font-family: "SB Sans Text";
+    }
+
+
+#modeltitle {
+    background-color: #2e0571;
+    padding: 10px;
+    text-align: center;
+    font-size: 25px;
+    color: white;
+    font-family: "SB Sans Text";
+}
+
+
+#carus {
+    padding: 10px;
+    background-color: #2e0571;
+    margin-top: -20px;
+    margin-left: 8px;
+   
+    object-fit: contain;
+    
+}
+
+    #carus img {
+        object-fit: cover;
+        width: 100%;
+    }
+
+#allCars {
+    background-color: #7c45d6;
+    padding: 20px;
+    font-size: 20px;
+    text-align: center;
+    color: white;
+    margin-left: 8px;
+    font-family: "SB Sans Text";
+}
+
+    #allCars a {
+        color: white;
+    }
+
+#titlelarge {
+    font-size: 50px;
+    font-family: "SB Sans Text";
+    color: black;
+}
+
+#cont {
+    padding: 1rem;
+    margin-top: 2rem;
+    font-size: 1rem;
+    font-family: "SB Sans Text";
+    color: black;
+    margin-left: 60px;
+}
+
+
+span {
+    color: red;
+}
+
+
+footer {
+    background-color: #7c45d6;
+    color: white;
+    font-size: 50px;
+}
+
+#fonts {
+    font-size: 18px;
+    padding: 3%;
+}
+
+
+#copyright {
+    text-align: right;
+}
+
+#t {
+    padding: 2%;
+}
+

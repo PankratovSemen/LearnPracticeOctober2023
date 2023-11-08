@@ -1,0 +1,41 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+@model LearnPractice.Models.Database.Articles;
+
+<title>Публикация статей</title>
+<h1>Публикация статей</h1>
+
+@using (Html.BeginForm())
+{
+
+    @Html.LabelFor(model => model.Title, "Название материала")
+    <br/>
+    @Html.EditorFor(model => model.Title)
+        <br /> <br/>
+    @Html.LabelFor(model => model.Description, "Описание")
+    <br/>
+    @Html.EditorFor(model => model.Description)
+    <br/> <br/>
+    
+    @Html.LabelFor(model => model.Content, "Текст")
+    <br/>
+    @Html.EditorFor(model => model.Content)
+    <br/> <br/>
+    @Html.LabelFor(model => model.Author, "Автор")
+    <br/>
+    @Html.EditorFor(model => model.Author)
+    
+    <input type="hidden" name="date" value="@DateTime.UtcNow" />
+    
+    <input type="hidden" name="SourceInfo" value="My"/>
+    <br />
+    @Html.LabelFor(model => model.ImageLink, "Ссылка на изображение")
+    <br />
+    @Html.EditorFor(model => model.ImageLink)
+
+
+    <input type="submit" value="Опубликовать" />
+    }
