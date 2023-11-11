@@ -1,0 +1,47 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+<style>
+    .bord{
+        width:100%;
+        height:70px;
+        background-color:white;
+    }
+
+    h1{
+        font-size:25px;
+    }
+
+
+    h3{
+        font-size:20px;
+    }
+    #brd{
+        width:100%;
+        object-fit:cover;
+    }
+    p{
+        font-size:16px;
+    }
+    .link{
+        font-size:16px;
+    }
+</style>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-12" id="brd">
+            <h1>Машины в лизинге</h1>
+            @foreach(var cars in ViewBag.Cars)
+            {
+                <h3>@cars.Mark  @cars.Model</h3>
+                <img src="@cars.Preview" width="900" height="900"/>
+                <p>Мощность:@cars.MilHour</p>
+                <a class="link"href="~/UserPanel/Autolizs/@cars.Id">Подробнее</a>
+            }
+            </div>
+            <div class="bord"></div>
+
+    </div>
+</div>

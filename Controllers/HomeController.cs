@@ -1,5 +1,6 @@
 ﻿using LearnPractice.Models;
 using LearnPractice.Models.Database;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System.Diagnostics;
@@ -10,11 +11,13 @@ namespace LearnPractice.Controllers
     {
         private readonly ILogger<HomeController> _logger;
         private ArticlesContext db;
+        private CarsContext carsContext;
 
-        public HomeController(ILogger<HomeController> logger, ArticlesContext context)
+        public HomeController(ILogger<HomeController> logger, ArticlesContext context, CarsContext carsCont)
         {
             _logger = logger;
-            db=context;
+            db = context;
+            carsContext = carsCont;
         }
 
         public IActionResult Index()
@@ -22,12 +25,20 @@ namespace LearnPractice.Controllers
             ViewBag.Articles = db.Articles.Take(5);
             var latestId = db.Articles.Max(p => p.Id);
             ViewBag.Article = db.Articles.Find(latestId);
+            latestId = carsContext.Cars.Max(p => p.Id);
+            var minId = carsContext.Cars.Min(p => p.Id);
+            ViewBag.Cars = carsContext.Cars.Take(3);
+
+            ViewBag.Car = carsContext.Cars.Find(latestId);
+            ViewBag.Car1 = carsContext.Cars.Find(minId);
             return View();
         }
-
+        
         public IActionResult Articles()
         {
-            return View(db.Articles.ToList());
+            
+                return View(db.Articles.ToList());
+            
         }
         public IActionResult Article(int? id)
         {
@@ -35,6 +46,18 @@ namespace LearnPractice.Controllers
             var article = db.Articles.Find(id);
 
             return View(article);
+        }
+        public IActionResult Cars()
+        {
+
+            return View(carsContext.Cars.ToList());
+
+        }
+        public IActionResult Car(int? id)
+        {
+            if (id == null) return Redirect("~/Home/Cars");
+            var car = carsContext.Cars.Find(id);
+            return View(car);
         }
         public IActionResult Privacy()
         {

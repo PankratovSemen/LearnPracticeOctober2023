@@ -1,0 +1,32 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-3" id="brd">
+            <h1>Машины в лизинге</h1>
+            @*@foreach (var cars in ViewBag.Cars)
+            {*@
+            <h3>@ViewBag.Cars.Mark  @ViewBag.Cars.Model</h3>
+                <img src="@ViewBag.Cars.Preview" width="400" height="400" />
+                <p>Мощность:@ViewBag.Cars.MilHour</p>
+                <br />
+                <br />
+                <h4>Клиент:</h4>
+            @foreach(var user in ViewBag.User)
+                {
+                    <p>Фамилия:@user.FirstName</p>
+                    <p>Имя:@user.LastName</p>
+                    <p>Отчество:@user.MiddleName</p>
+                    <p>Электронная почта:@user.Email</p>
+                    <p>Телефон:@user.Phone</p>
+                }
+            @*}*@
+        </div>
+        <div class="bord"></div>
+
+    </div>
+</div>

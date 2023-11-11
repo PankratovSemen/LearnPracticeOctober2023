@@ -8,12 +8,32 @@
         padding:1%;
         min-height:100px;
     }
+    a{
+        font-size:20px;
+        font-family: "Bebas Neue";
+        font-weight: bold;
+    }
 </style>
 
 <div class="container-fluid">
     <div class="row">
         <div class="col-12" id="brd">
-            <a asp-action="Articles">Статьи</a>
+            @if (User.IsInRole("Admin"))
+            {
+                <a asp-action="Articles">Статьи</a>
+                <br />
+                <a asp-action="Cars">Автомобили</a>
+                <br />
+                <a href="UserPanel/Mycar?email=@User.Identity.Name">Моя машина</a>
+                <br />
+                <a href="~/UserPanel/Autoliz">Машины в лизинге</a>
+            }
+            else
+            {
+                <a href="~/UserPanel/Mycar?email=@User.Identity.Name">Моя машина</a>
+
+            }
+            
         </div>
     </div>
 </div>

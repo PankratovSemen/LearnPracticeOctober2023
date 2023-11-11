@@ -1,0 +1,30 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+@model LearnPractice.Models.Database.Cars;
+
+
+<div class="container-fluid">
+    <div class="row">
+
+
+        @foreach (var s in ViewBag.Car)
+        {
+            <div class="col-12" id="brd">
+
+
+                <b> <h2>@Html.Raw(s.Mark + " " + s.Model)</h2></b>
+                <img src="@s.Preview" width="500" height="500" />
+                <p>Номер ПТС @Html.Raw(s.IdPts)</p>
+                <p>Номер СТС @Html.Raw(s.IdSts)</p>
+                <p>Цена машины:@Html.Raw(s.Sum)</p>
+                <p>Мощность:@Html.Raw(s.MilHour)</p>
+               
+            </div>
+            <div class="col-1" id="brds"></div>
+        }
+
+    </div>
+</div>

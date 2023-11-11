@@ -1,0 +1,42 @@
+﻿@model LearnPractice.Models.Database.Cars;
+
+<title>Добавление автомобилей</title>
+<h1>Добавление автомобилей</h1>
+
+@using (Html.BeginForm())
+{
+
+    @Html.LabelFor(model => model.Mark, "Марка")
+    <br/>
+    @Html.EditorFor(model => model.Mark)
+        <br /> <br/>
+    @Html.LabelFor(model => model.Model, "Модель")
+    <br/>
+    @Html.EditorFor(model => model.Model)
+    <br/> <br/>
+    
+    @Html.LabelFor(model => model.IdPts, "Номер ПТС")
+    <br/>
+    @Html.EditorFor(model => model.IdPts)
+    <br/> <br/>
+    @Html.LabelFor(model => model.IdSts, "Номер СТС")
+    <br/>
+    @Html.EditorFor(model => model.IdSts)
+    
+    @Html.LabelFor(model => model.Sum, "Цена")
+    <br />
+    @Html.EditorFor(model => model.Sum)
+    <br />
+    @Html.LabelFor(model => model.MilHour, "Лошадинные силы")
+    <br />
+    @Html.EditorFor(model => model.MilHour)
+
+    @Html.LabelFor(model => model.Preview, "Ссылка на изображение")
+    <br />
+    @Html.EditorFor(model => model.Preview)
+
+
+
+
+    <input type="submit" value="Создать" />
+    }

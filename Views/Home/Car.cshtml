@@ -1,0 +1,54 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+
+@model LearnPractice.Models.Database.Cars;
+
+
+<style>
+    h2 {
+        font-family: "Bebas Neue";
+        font-size: 30px;
+        font-weight: bold;
+        padding: 10px;
+    }
+
+    #brd {
+        height: 100%;
+    }
+
+    p {
+        font-family: "PT Sans" font-size:18px;
+        font-weight: normal;
+        padding: 10px;
+        font-size:18px;
+    }
+</style>
+
+
+
+
+<div class="container-fluid">
+    <div class="row">
+
+
+        <div class="col-12" id="brd">
+
+
+            <b> <h2>@Html.Raw(Model.Mark + " " + Model.Model)</h2></b>
+            
+            <img src="@Model.Preview" />
+            <p>Мощность:@Html.Raw(Model.MilHour) л/с</p>
+            <p>Цена:@Html.Raw(Model.Sum) руб.</p>
+        </div>
+        <div class="col-1" id="brds"></div>
+
+    </div>
+</div>
