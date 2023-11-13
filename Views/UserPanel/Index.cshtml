@@ -22,14 +22,25 @@
             {
                 <a asp-action="Articles">Статьи</a>
                 <br />
+                <br />
                 <a asp-action="Cars">Автомобили</a>
+                <br />
                 <br />
                 <a href="UserPanel/Mycar?email=@User.Identity.Name">Моя машина</a>
                 <br />
+                <br />
                 <a href="~/UserPanel/Autoliz">Машины в лизинге</a>
+                <br />
+                <br />
+                <a href="~/UserPanel/Services?email=@User.Identity.Name">Техническое обслуживание</a>
+                <br />
+                <br />
+                <a href="~/UserPanel/ServicesView">Техническое обслуживание автомобилей</a>
             }
             else
             {
+                <a href="~/UserPanel/Services?email=@User.Identity.Name">Техническое обслуживание</a>
+                <br />
                 <a href="~/UserPanel/Mycar?email=@User.Identity.Name">Моя машина</a>
 
             }

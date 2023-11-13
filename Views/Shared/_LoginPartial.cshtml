@@ -25,25 +25,50 @@
         text-align: right;
         margin-top: -40px;
     }
+
+
+
+    a {
+        font-size: 18px;
+        font-family: "Bebas Neue";
+        font-weight: bold;
+
+    }
+
+    p {
+        font-family: "PT Sans";
+        font-size: 18px;
+        font-weight: normal;
+        padding: 10px;
+    }
+
+    span{
+        color:white;
+    }
+
+    #logout{
+        color:white;
+        font-family: "Bebas Neue";
+    }
 </style>
 @if (SignInManager.IsSignedIn(User))
 {
 
-    <a id="Hello" class="nav-link text-dark" asp-controller="UserPanel" asp-action="Index" title="UserPanel">Привет @UserManager.GetUserName(User)!</a>
+    <span> <a id="Hello" class="nav-link text-dark" asp-controller="UserPanel" asp-action="Index" title="UserPanel">Привет @UserManager.GetUserName(User)!</a></span>
 
 
     <form id="logoutForm" class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
-        <button id="logout" type="submit" class="nav-link btn btn-link text-dark">Выйти</button>
+        <span><button id="logout" type="submit" class="nav-link btn btn-link text-dark">Выйти</button></span>
     </form>
 
 }
 else
 {
 
-    <a class="nav-link text-dark" id="register" asp-area="Identity" asp-page="/Account/Register">Регистрация</a>
+  <span>  <a class="nav-link text-dark" id="register" asp-area="Identity" asp-page="/Account/Register">Регистрация</a></span>
 
 
-    <a class="nav-link text-dark" id="login" asp-area="Identity" asp-page="/Account/Login">Войти</a>
+    <span> <a class="nav-link text-dark" id="login" asp-area="Identity" asp-page="/Account/Login">Войти</a></span>
 
 }
 

@@ -1,0 +1,36 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+@model List<LearnPractice.Models.Database.Services>
+
+
+<div class="container-fluid">
+    <div class="row">
+        
+        @foreach (var services in Model)
+        {
+            <div class="col-3" id="brd">
+
+               
+                <p>@Html.Raw(services.Id)</p>
+                <p>Описание проблемы: @Html.Raw(services.DescriptionFail)</p>
+                <p>Дата записи: @Html.Raw(services.Date)</p>
+                <p>Клиент</p>
+                @foreach (var user in ViewBag.Client)
+                {
+                    <p>Фамилия:@user.FirstName</p>
+                    <p>Имя:@user.LastName</p>
+                    <p>Отчество:@user.MiddleName</p>
+                }
+                <p>Автомобили:</p>
+                @foreach(var cars in ViewBag.Cars)
+                {
+                    <p>@cars.Mark @cars.Model</p>
+                } <h2><a href="~/UserPanel/ServiceEdit/@services.Id">Изменить статус</a></h2>
+            </div>
+            <div class="col-1" id="brds"></div>
+        }
+    </div>
+</div>

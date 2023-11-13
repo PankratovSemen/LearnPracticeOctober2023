@@ -12,11 +12,15 @@ namespace LearnPractice.Controllers
         public ArticlesContext db;
         public CarsContext carsContext;
         public LearnPracticeContext usersContext;
-        public UserPanelController(ArticlesContext context, CarsContext carsCont,LearnPracticeContext us)
+        public ServicesContext servicesContext;
+        public ApplicationsContext applications;
+        public UserPanelController(ArticlesContext context, CarsContext carsCont,LearnPracticeContext us, ServicesContext servicesCont, ApplicationsContext applications)
         {
             db = context;
             carsContext = carsCont;
             usersContext = us;
+            servicesContext = servicesCont;
+            this.applications = applications;
         }
         [Authorize]
         public ActionResult Index()
@@ -177,5 +181,119 @@ namespace LearnPractice.Controllers
             ViewBag.User = user;
             return View();
         }
-    }
+
+
+        public ActionResult ServicesView()
+        {
+            var servicesList = servicesContext.Services.ToList();
+            foreach(var service in servicesList)
+            {
+                ViewBag.Client = usersContext.Users.Where(x => x.Email == service.LoginUser);
+            }
+
+            foreach(var cars in servicesList)
+            {
+                ViewBag.Cars = carsContext.Cars.Where(x => x.UserId == cars.LoginUser).ToList();
+            }
+           
+            return View(servicesList);
+        }
+
+        [HttpGet]
+        public ActionResult Services(string email)
+        {
+            if (email == null)
+            {
+                return StatusCode(404);
+            }
+            else
+            {
+
+                var car = carsContext.Cars.Where(x=>x.UserId==email).ToList();
+                foreach(var carid in car)
+                {
+                    ViewBag.CarId = carid.Id;
+                }
+               
+                ViewBag.Email = email;
+                return View();
+            }
+
+            
+        }
+
+        [HttpPost]
+        public ActionResult Services(Services services)
+        {
+            var serv = new Services
+            {
+                Date = services.Date,
+                IdCar = services.IdCar,
+                LoginUser = services.LoginUser,
+                DescriptionFail = services.DescriptionFail,
+                Status = services.Status
+            };
+            servicesContext.Services.Add(serv);
+            servicesContext.SaveChanges();
+            return View();
+        }
+        [HttpGet]
+        public ActionResult ServiceEdit(int? id)
+        {
+            var serv = servicesContext.Services.Find(id);
+            var User = usersContext.Users.Where(x => x.Email == serv.LoginUser);
+            foreach(var user in User)
+            {
+                ViewBag.User = user.Email;
+            }
+           
+            var car = carsContext.Cars.Where(x => x.UserId == serv.LoginUser).ToList();
+            foreach (var carid in car)
+            {
+                ViewBag.CarId = carid.Id;
+            }
+            var des = servicesContext.Services.Where(x => x.Id == id).ToList();
+            foreach(var desk in des)
+            {
+                ViewBag.Descr = desk.DescriptionFail;
+            }
+           
+            
+            return View(serv);
+        }
+
+        [HttpPost]
+        public ActionResult ServiceEdit(Services services) 
+        {
+            var serv = new Services
+            {
+                Date = services.Date,
+                IdCar = services.IdCar,
+                LoginUser = services.LoginUser,
+                DescriptionFail = services.DescriptionFail,
+                Status = services.Status,
+                Message = services.Message
+            };
+            servicesContext.Services.Update(serv);
+            servicesContext.SaveChanges();
+            var app = new Applications
+            {
+                Message = $"Статус заявки на техническое обслужиание изменен на {services.Status}.<br/> {services.Message} ",
+                Status = "Отправлен",
+                LoginUser = services.LoginUser,
+                Date = DateTime.UtcNow
+            };
+            applications.Add(app);
+            applications.SaveChanges();
+            return View();
+        }
+
+        public ActionResult Message(string email)
+        {
+            ViewBag.Message = applications.Applications.Where(x => x.LoginUser == email).ToList();
+            return View();
+        }
+
+
+        }
 }

@@ -20,6 +20,8 @@ builder.Services.AddDbContext<ArticlesContext>(options => options.UseSqlServer(c
 builder.Services.AddDbContext<LearnPracticeContext>(options => options.UseSqlServer(connection));
 
 builder.Services.AddDbContext<CarsContext>(options => options.UseSqlServer(connection));
+builder.Services.AddDbContext<ServicesContext>(options => options.UseSqlServer(connection));
+builder.Services.AddDbContext<ApplicationsContext>(options => options.UseSqlServer(connection));
 
 
 

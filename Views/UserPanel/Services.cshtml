@@ -1,0 +1,29 @@
+﻿@model LearnPractice.Models.Database.Services;
+
+<title>Запись на техническое обслуживание</title>
+<h1>Запись на техническое обслуживание</h1>
+<style>
+    
+</style>
+@using (Html.BeginForm())
+{
+
+    @Html.LabelFor(model => model.DescriptionFail, "Опишите проблему")
+    <br />
+    @Html.TextAreaFor(model => model.DescriptionFail)
+    <br />
+    <br />
+    @Html.LabelFor(model => model.Date, "Укажите дату записи")
+    <br />
+    @Html.EditorFor(model => model.Date)
+    <br />
+    <br />
+    <input type="hidden" name="LoginUser" value="@ViewBag.Email" />
+    <input type="hidden" name="IdCar" value="@ViewBag.CarId" />
+    <input type="hidden" name="Status" value="Отправлено" />
+    
+
+
+
+    <input type="submit" value="Отправить" />
+}
