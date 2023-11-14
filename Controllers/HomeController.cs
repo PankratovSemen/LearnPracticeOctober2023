@@ -22,22 +22,38 @@ namespace LearnPractice.Controllers
 
         public IActionResult Index()
         {
-            ViewBag.Articles = db.Articles.Take(5);
-            var latestId = db.Articles.Max(p => p.Id);
-            ViewBag.Article = db.Articles.Find(latestId);
-            latestId = carsContext.Cars.Max(p => p.Id);
-            var minId = carsContext.Cars.Min(p => p.Id);
-            ViewBag.Cars = carsContext.Cars.Take(3);
+            try
+            {
+                ViewBag.Articles = db.Articles.Take(5);
+                var latestId = db.Articles.Max(p => p.Id);
+                ViewBag.Article = db.Articles.Find(latestId);
+                latestId = carsContext.Cars.Max(p => p.Id);
+                var minId = carsContext.Cars.Min(p => p.Id);
+                ViewBag.Cars = carsContext.Cars.Take(3);
 
-            ViewBag.Car = carsContext.Cars.Find(latestId);
-            ViewBag.Car1 = carsContext.Cars.Find(minId);
-            return View();
+                ViewBag.Car = carsContext.Cars.Find(latestId);
+                ViewBag.Car1 = carsContext.Cars.Find(minId);
+                return View();
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex.Message);
+                return View();
+            }
         }
         
         public IActionResult Articles()
         {
-            
+            try
+            {
                 return View(db.Articles.ToList());
+            }
+
+            catch(Exception ex)
+            {
+                _logger.LogError(ex.Message);
+                return View();
+            }
             
         }
         public IActionResult Article(int? id)

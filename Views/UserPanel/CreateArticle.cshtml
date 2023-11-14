@@ -17,21 +17,19 @@
         <br /> <br/>
     @Html.LabelFor(model => model.Description, "Описание")
     <br/>
-    @Html.EditorFor(model => model.Description)
+    @Html.TextAreaFor(model => model.Description)
     <br/> <br/>
     
     @Html.LabelFor(model => model.Content, "Текст")
     <br/>
-    @Html.EditorFor(model => model.Content)
+    @Html.TextAreaFor(model => model.Content)
     <br/> <br/>
     @Html.LabelFor(model => model.Author, "Автор")
     <br/>
     @Html.EditorFor(model => model.Author)
     
-    <input type="hidden" name="date" value="@DateTime.UtcNow" />
     
-    <input type="hidden" name="SourceInfo" value="My"/>
-    <br />
+   
     @Html.LabelFor(model => model.ImageLink, "Ссылка на изображение")
     <br />
     @Html.EditorFor(model => model.ImageLink)

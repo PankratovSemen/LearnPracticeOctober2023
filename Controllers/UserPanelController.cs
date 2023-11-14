@@ -52,8 +52,8 @@ namespace LearnPractice.Controllers
         [HttpGet]
         public ActionResult CreateArticle()
         {
-            
             return View();
+          
         }
         [HttpPost]
         public ActionResult CreateArticle(Articles articles)
@@ -70,7 +70,7 @@ namespace LearnPractice.Controllers
             };
             db.Articles.Add(article);
             db.SaveChanges();
-            return View();
+            return Redirect("~/UserPanel/Index");
         }
 
 
@@ -97,7 +97,7 @@ namespace LearnPractice.Controllers
             carsContext.Cars.Add(car);
             carsContext.SaveChanges();
 
-            return View();
+            return Redirect("~/UserPanel/Cars");
         }
 
 
