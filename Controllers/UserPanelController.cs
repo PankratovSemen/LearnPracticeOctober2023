@@ -112,7 +112,7 @@ namespace LearnPractice.Controllers
 
         public ActionResult Cars()
         {
-            return View(carsContext.Cars.ToList());
+            return View(carsContext.Cars.Where(x=>x.UserId==null).ToList());
         }
 
         public ActionResult DeleteCars(int id)
@@ -145,6 +145,7 @@ namespace LearnPractice.Controllers
         {
             var car = new Cars
             {
+                Id = cars.Id,
                 Model = cars.Model,
                 Mark = cars.Mark,
                 IdPts = cars.IdPts,
