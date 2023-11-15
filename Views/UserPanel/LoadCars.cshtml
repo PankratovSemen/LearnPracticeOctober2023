@@ -1,0 +1,23 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+
+<h2>Загрузка файла  Excel для автомобилей</h2>
+
+
+<div class="container">
+    <div class="row">
+        @using (Html.BeginForm("Import", "UserPanel", FormMethod.Post, new { enctype = "multipart/form-data", id = "frm-excel" }))
+        {
+            <div class="col-6">
+                Загрузите файл Excel
+                <input type="file" name="fileExcel" id="fileExcel" />
+                <div>
+                    <input type="submit" value="Загрузить" />
+                </div>
+            </div>
+        }
+    </div>
+</div>

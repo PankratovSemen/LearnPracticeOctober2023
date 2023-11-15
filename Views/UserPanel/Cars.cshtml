@@ -41,12 +41,16 @@
         <form action="~/UserPanel/CarsCreate">
             <input type="submit" value="Добавить автомобиль" />
         </form>
+        <form action="~/UserPanel/LoadCars">
+            <input type="submit" value="Добавить автомобиль через файл" />
+        </form>
         @foreach (var article in Model)
         {
             <div class="col-3" id="brd">
 
                 <h2><a href="~/Home/Car/@article.Id">@Html.Raw(article.Mark+ " " + article.Model)</a></h2>
-               
+                <img width="400" height="400" src="@article.Preview">
+                Номер ПТС:@article.IdPts
                 <form action="~/UserPanel/DeleteCars/@article.Id">
                     <input type="submit" value="Удалить" />
                 </form>

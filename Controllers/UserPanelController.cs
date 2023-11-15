@@ -1,26 +1,35 @@
 ﻿using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
+
 using LearnPractice.Models.Database;
 using Microsoft.AspNetCore.Authorization;
 using LearnPractice.Data;
+using System.Web;
+using AuthorizeAttribute = System.Web.Mvc.AuthorizeAttribute;
+using LearnPractice.Models.Logic;
+using ClosedXML.Excel;
+using Microsoft.AspNetCore.Mvc;
 
 namespace LearnPractice.Controllers
 {
     public class UserPanelController : Controller
     {
         // GET: UserPanelController
+        private readonly ILogger<HomeController> _logger;
         public ArticlesContext db;
         public CarsContext carsContext;
         public LearnPracticeContext usersContext;
         public ServicesContext servicesContext;
         public ApplicationsContext applications;
-        public UserPanelController(ArticlesContext context, CarsContext carsCont,LearnPracticeContext us, ServicesContext servicesCont, ApplicationsContext applications)
+        IWebHostEnvironment _appEnvironment;
+        public UserPanelController(ArticlesContext context, CarsContext carsCont,LearnPracticeContext us, ServicesContext servicesCont, ApplicationsContext applications, ILogger<HomeController> logger, IWebHostEnvironment appEnvironment)
         {
             db = context;
             carsContext = carsCont;
             usersContext = us;
             servicesContext = servicesCont;
             this.applications = applications;
+            _logger = logger;
+            _appEnvironment = appEnvironment;
         }
         [Authorize]
         public ActionResult Index()
@@ -292,6 +301,85 @@ namespace LearnPractice.Controllers
         {
             ViewBag.Message = applications.Applications.Where(x => x.LoginUser == email).ToList();
             return View();
+        }
+        public ActionResult LoadCars()
+        {
+            return View();
+        }
+        //Импорт в Excel
+        [HttpPost]
+        
+
+        public async Task<ActionResult> Import(IFormFile fileExcel)
+        {
+            string path = "";
+            if (fileExcel != null)
+            {
+                path = "/Files/" + fileExcel.FileName;
+                // сохраняем файл в папку Files в каталоге wwwroot
+                using (var fileStream = new FileStream(_appEnvironment.WebRootPath + path, FileMode.Create))
+                {
+                    await fileExcel.CopyToAsync(fileStream);
+                }
+                _logger.LogInformation(path);
+            }
+
+                if (ModelState.IsValid)
+            {
+                ExcelVM viewModel = new ExcelVM();
+                using(XLWorkbook workbook = new XLWorkbook(_appEnvironment.WebRootPath + path))
+                {
+                    foreach(IXLWorksheet worksheet in workbook.Worksheets)
+                    {
+                      
+                       
+
+                        
+                            foreach(IXLRow row in worksheet.RowsUsed().Skip(1))
+                            {
+                                try
+                                {
+                                    
+                                    Cars car = new Cars();
+                                   
+                                    car.Mark = row.Cell(1).Value.ToString();
+                                    car.Model = row.Cell(2).Value.ToString();
+                                    car.IdPts = row.Cell(3).Value.ToString();
+                                    car.IdSts = row.Cell(4).Value.ToString();
+                                    car.Sum = Convert.ToInt32(row.Cell(5).Value.ToString());
+                                    car.MilHour = Convert.ToInt32(row.Cell(6).Value.ToString());
+                                    car.Preview = row.Cell(7).Value.ToString();
+                                    carsContext.Add(car);
+                                    carsContext.SaveChanges();
+                                //if (carsContext.Cars.Where(q => q.IdPts == car.IdPts) != null)
+                                //{
+                                //    _logger.LogError("Такая машина существует");
+                                //}
+                                //else
+                                //{
+                                    
+
+                                //}
+
+
+
+
+                                   
+
+                            }
+                                catch(Exception ex)
+                                {
+                                    _logger.LogError(ex.Message);
+                                   
+                                }
+                            }
+                        
+                    }
+                }
+
+                return Redirect("~/UserPanel");
+            }
+            return Redirect("~/UserPanel");
         }
 
 
